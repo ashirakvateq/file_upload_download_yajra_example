@@ -52,7 +52,11 @@ class PublicController extends Controller
                     $btn = '<a class="btn btn-primary btn-sm" href="'.$row->url.'" download>Download</a>';
                     return $btn;
                 })
-                ->rawColumns(['action'])
+                ->addColumn('delete', function($row){
+                    $delete = '<a class="btn btn-danger btn-sm" href="'.route('delete.file',$row->id).'">Delete</a>';
+                    return $delete;
+                })
+                ->rawColumns(['action','delete'])
                 ->make(true);
         }
 
@@ -61,6 +65,13 @@ class PublicController extends Controller
     
     public function getPublicPortal(){
         return view('public_portal');
+    }
+
+    public function deleteFile($id){
+        $file = File::findOrFail($id);
+        $file->delete();
+
+        return back()->with('success', 'File Deleted Successfully...');
     }
 
 }

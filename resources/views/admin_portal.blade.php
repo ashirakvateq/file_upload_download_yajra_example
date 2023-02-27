@@ -47,6 +47,7 @@
                     <th>Name</th>
                     <th>URL</th>
                     <th width="100px">Action</th>
+                    <th width="100px">Delete</th>
                 </tr>
             </thead>
             <tbody></tbody>

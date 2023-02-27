@@ -45,6 +45,12 @@
                         orderable: false,
                         searchable: false
                     },
+                    {
+                        data: 'delete',
+                        name: 'delete',
+                        orderable: false,
+                        searchable: false
+                    },
                 ]
             });
         });
