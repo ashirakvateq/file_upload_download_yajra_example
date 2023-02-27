@@ -62,6 +62,22 @@ class PublicController extends Controller
 
         return view('base_layout');
     }
+
+    public function getSearchFile(Request $request){
+        $query = File::query();
+        $search_value = $request->get('search')['value'];
+        if(strlen($search_value) > 2){
+            if ($request->has('search')) {
+                $searchValue = $request->get('search')['value'];
+                if (!empty($searchValue)) {
+                    $query->where('name', 'like', '%'.$searchValue.'%');
+                    return DataTables::of($query)->make(true);
+                }
+            }
+        }
+
+        return view('base_layout');
+    }
     
     public function getPublicPortal(){
         return view('public_portal');
